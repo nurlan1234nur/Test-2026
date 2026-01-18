@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 struct node {
@@ -6,7 +7,7 @@ struct node {
         node* rightNode;
         node* leftNode;
     };
-bool dfs(node* node, int number);
+bool bfs(node* node, int number);
 
 int main(){
 
@@ -23,7 +24,7 @@ int main(){
     Tree->rightNode->rightNode = nullptr;
 
     
-    int found = dfs(Tree, 15); 
+    int found = bfs(Tree, 10); 
     
     if(!found)
         cout << "ene too oldsongui!!";
@@ -37,16 +38,23 @@ int main(){
     return 0;
 }
 
-bool dfs(node* root, int number){
-        
-        if(root == NULL) return 0;
-        if(root->value == number) return 1;
-        
-        if(root->leftNode != NULL)
-            if(dfs(root->leftNode, number)) return 1;
-        if(root->rightNode != NULL)
-            if(dfs(root->rightNode, number)) return 1;
+bool bfs(node* root, int number){
 
-        return 0;
+    if(root == NULL) return -1;
+
+    queue<node> nodes;
+    nodes.push(*root);
+        
+    while(!nodes.empty()){
+    root = &nodes.front();
+    nodes.pop();
+    
+    if(root->value == number) return 1;
+    if(root->leftNode != NULL)
+        nodes.push(*root->leftNode);
+    if(root->rightNode != NULL)
+        nodes.push(*root->rightNode);
     }
+    return 0;
+}
 

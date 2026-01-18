@@ -15,7 +15,7 @@ int linearSearcher( int a[], int size){
     return -1;
 }
 
-
+//hoyrtiin hailt
 int binarySearch(int a[], int size){
 
     int number, left = 0, right = size - 1;
@@ -56,7 +56,6 @@ int main(){
 
     cout << "Odoo haina"<< endl;
 
-    // int n = linearSearcher(a, size);
     int n = binarySearch(a, size);
     
     if(!n)
